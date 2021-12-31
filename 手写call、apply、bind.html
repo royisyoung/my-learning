@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.myCall = function (context = window, ...args) {
+      if (typeof context !== 'function') {
+        return new TypeError('Error');
+      }
+      context.fn = this;
+      const res = context.fn(...args);
+      delete context.fn;
+      return res;
+    }
+    Function.prototype.myApply = function (context = window, args) {
+      if (typeof context !== 'function') {
+        return new TypeError('Error');
+      }
+      context.fn = this;
+      const res = context.fn(...args);
+      delete context.fn;
+      return res;
+    }
+    Function.prototype.myBind = function (context = window, ...args) {
+      if (typeof context !== 'function') {
+        return new TypeError('Error');
+      }
+      const _this = this;
+      return function Func(params) {
+        if (this instanceof Func) {
+          return _this(...args, ...params);
+        }
+        return _this.apply(this, ...args, ...params);
+      }
+    }
+  </script>
+</body>
+</html>

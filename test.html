@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 第一题 树状数据
+    const convertFormat = (arr, uniqueKey, parentKey) => {
+      return arr.reduce((res, item) => {
+        const target = arr.find(i => i[uniqueKey] === item[parentKey]);
+        if (target) {
+          const key = target[uniqueKey];
+          res[target[uniqueKey]][item[parentKey]] = {};
+        } else {
+          res[item[parentKey]] = {}
+        }
+        return res
+      }, {});
+    }
+    // 第二题 多重排序
+    const multipleSort = (data, sort) => {
+      const sortFunction = {
+        desc: (a, b) => a - b, // 降序
+        asc: (a, b) => b - a, // 升序
+      };
+      const cSort = (arr, { key, order }) => arr.sort((a, b) => sortFunction[order](a[key], b[key]));
+      return sort.reduce((res, item) => cSort(res, item), data);
+    };
+  </script>
+</body>
+</html>
