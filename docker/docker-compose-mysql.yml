@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mybestsql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/xuyang/docker-compose/mysql:/var/lib/mysql
