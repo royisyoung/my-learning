@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs", // 在生成模块代码时指定模块系统
+    "checkJs": true, // 启用javascript文件的类型检查
+    "baseUrl": "." // 解析非相关模块名称的基础目录
+  },
+  "exclude": ["node_modules"],
+  "include": [
+    // 包含的文件
+    "src/*.js"
+  ]
+}
